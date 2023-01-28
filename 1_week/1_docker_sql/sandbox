@@ -1,0 +1,55 @@
+
+docker ps
+
+
+
+docker run -it \
+-e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
+    -e PGADMIN_DEFAULT_PASSWORD="root" \
+    -p 8080:80 \
+    dpage/pgadmin4
+
+
+
+
+
+docker network create pg_network
+3ed6631ae014da87e7e423dbad897567e31042e044a76bf65bd7c8f11a0a8af2
+
+docker run -it \
+-e POSTGRES_USER="root" \
+-e POSTGRES_PASSWORD="root" \
+-e POSTGRES_DB="ny_taxi" \
+-v $(pwd)/ny_taxi_postgres_data:/var/lib/postgresql/data \
+-p 5432:5432 \
+--network=pg_network \
+--name pg-database \
+postgres:13
+
+
+------------------------------------------------------v
+------------------------------------------------------v
+#CREATE PGADMIN WEB INTERFACE
+docker run -it \
+-e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
+    -e PGADMIN_DEFAULT_PASSWORD="root" \
+    -p 8080:80 \
+   --network=pg_network \
+    --name pgadmin \
+    dpage/pgadmin4
+
+
+Host-name -> pg-database
+port 5432
+root
+root
+
+------------------------------------------------------v
+------------------------------------------------------v
+
+
+python3 pipeline.py  --user=root --password=root --host=localhost --port=5432 --db=ny_taxi --table_name=yellow_taxi_trips --url="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-01.csv.gz"
+
+------------------------------------------------------v
+------------------------------------------------------v
+

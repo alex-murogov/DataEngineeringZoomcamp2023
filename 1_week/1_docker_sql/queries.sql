@@ -11,6 +11,23 @@ inner join taxi_zones as zp on zp."LocationID" = tr."PULocationID"
 limit 10;
 --630918
 
+https://docs.google.com/forms/d/e/1FAIpQLSfZSkhUFQOf8Novq0aWTVY9LC0bJ1zlFOKiC-aVLwM-8LdxSg/viewform
+
+
+--QUESTION 1
+----iidfile string
+
+
+--Q 2
+--almazini@AMs-MacBook-Pro 1_docker_sql % docker run -it --entrypoint bash python:3.9
+--root@70196ec1c2a0:/# pip list
+--Package    Version
+------------ -------
+--pip        22.0.4
+--setuptools 58.1.0
+--wheel      0.38.4
+--
+--
 
 --Q3
 select count(1)

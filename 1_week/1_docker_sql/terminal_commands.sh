@@ -14,7 +14,7 @@ wget https://s3.amazonaws.com/nyc-tlc/misc/taxi+_zone_lookup.csv
 
 wget https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-01.csv.gz
 
-cd /Users/almazini/Documents/DEZoomCamp2023/1_week/1_docker_sql
+cd /Users/alex/Documents/DEZoomCamp2023/1_week/1_docker_sql
 
 # run local interface to query DB
 pgcli -h localhost -p 5432 -u root -d ny_taxi

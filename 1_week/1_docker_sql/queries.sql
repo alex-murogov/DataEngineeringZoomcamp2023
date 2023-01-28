@@ -19,7 +19,7 @@ https://docs.google.com/forms/d/e/1FAIpQLSfZSkhUFQOf8Novq0aWTVY9LC0bJ1zlFOKiC-aV
 
 
 --Q 2
---almazini@AMs-MacBook-Pro 1_docker_sql % docker run -it --entrypoint bash python:3.9
+--alex@AMs-MacBook-Pro 1_docker_sql % docker run -it --entrypoint bash python:3.9
 --root@70196ec1c2a0:/# pip list
 --Package    Version
 ------------ -------

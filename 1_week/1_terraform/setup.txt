@@ -1,0 +1,66 @@
+Downloads % ./google-cloud-sdk/bin/gcloud init
+
+export GOOGLE_APPLICATION_CREDENTIALS=/Users/almazini/Documents/DEZoomCamp2023/1_week/1_terraform/datatalks-data-course-864656d754b9.json
+
+
+# Refresh token/session, and verify authentication
+gcloud auth application-default login
+
+#Credentials saved to file: [/Users/almazini/.config/gcloud/application_default_credentials.json]
+
+GCP:
+    add Storage Admin role
+    add Storage Object Admin role
+    add BigQuery admin role
+
+
+Enable these APIs for your project:
+
+https://console.cloud.google.com/apis/library/iam.googleapis.com
+https://console.cloud.google.com/apis/library/iamcredentials.googleapis.com
+
+
+
+# Refresh service-account's auth-token for this session
+gcloud auth application-default login
+
+# Initialize state file (.tfstate)
+terraform init
+
+# Check changes to new infra plan
+terraform plan -var="project=datatalks-data-course"
+# Create new infra
+terraform apply -var="project=datatalks-data-course"
+
+# Delete infra after your work, to avoid costs on any running services
+terraform destroy
+
+
+
+
+almazini@AMs-MacBook-Pro /Users % ssh -i ~/.ssh/gpc almazini@34.88.229.115
+
+sudo apt-get install wget
+sudo apt-get install docker.io
+
+ssh de-zoomcamp
+
+
+https://github.com/sindresorhus/guides/blob/main/docker-without-sudo.md
+https://github.com/docker/compose/releases/v2.2.3
+
+mkdir bin
+cd bin
+wget https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -O docker-compose
+chmod +x docker-compose
+
+nano .bashrc
+(base) almazini@de-zoomcamp:~/data-engineering-zoomcamp/week_1_basics_n_setup/2_docker_sql$ docker-compose up -d
+
+pip install pgcli
+pgcli -h localhost -U root -d ny_taxi
+
+
+TO CHANGE IP in SSH COnfig:
+nano .ssh/config
+

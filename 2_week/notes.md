@@ -22,3 +22,13 @@ http://127.0.0.1:4200/blocks
     - GCS Bucket / zoom-gcs
 
 
+
+
+prefect deployment build ./3_parameterized_flow.py:main_flow -n "Parameterized ETL"
+amend parameters in YAML file 
+prefect deployment apply main_flow-deployment.yaml
+
+
+to allow deployment run we need to create an agent: 
+prefect agent start --work-queue "default"
+

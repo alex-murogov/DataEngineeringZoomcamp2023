@@ -87,7 +87,8 @@
 
 ### Homework 
 
-* [HOMEWORK] (https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/cohorts/2023/week_2_workflow_orchestration/homework.md)
+* [HOMEWORK](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/cohorts/2023/week_2_workflow_orchestration/homework.md)
+
 Deadline: 6 February (Monday), 22:00 CET
 
 
@@ -98,7 +99,7 @@ Deadline: 6 February (Monday), 22:00 CET
 Did you take notes? You can share them here.
 
 * [Notes by Alain Boisvert](https://github.com/boisalai/de-zoomcamp-2023/blob/main/week2.md)
-* 
+
 * [Notes from Victor Padilha](https://github.com/padilha/de-zoomcamp/tree/master/week2)
 * [Notes by Candace Williams](https://github.com/teacherc/de_zoomcamp_candace2023/blob/main/week_2/week2_notes.md)
 

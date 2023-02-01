@@ -1,14 +1,13 @@
 from prefect.deployments import Deployment
 from prefect.infrastructure.docker import DockerContainer
-from task4_parameterized_flow import etl_gcs_to_bq  # TODO: change 4th file to have parent and child flows
+from task4_parameterized_flow import main_flow
 
-# etl_gcs_to_bq = __import__('4_parameterized_flow')
-
-
-docker_block = DockerContainer.load("zoomcamp")
+docker_block = DockerContainer.load("zoom")
 docker_dep = Deployment.build_from_flow(
-    flow=etl_gcs_to_bq,
+    flow=main_flow,
     name='docker-flow',
     infrastructure=docker_block
 )
 
+if __name__ == "__main__":
+    docker_dep.apply()

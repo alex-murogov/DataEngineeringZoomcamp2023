@@ -1,29 +1,18 @@
 ###
 ### A complete description of a Prefect Deployment for flow 'main-flow'
 ###
-name: Parameterized ETL
+name: etl2
 description: The main ETL flow
-version: cb069890f5a4ef97e4838c368e1bf4e9
+version: 1063b2c180a803b130e75644d15bae64
 # The work queue that will handle this deployment's runs
 work_queue_name: default
-work_pool_name: null
 tags: []
-parameters:
-  months:
-  - 1
-  - 2
-  - 3
-  year: 2021
-  color: yellow
-schedule: null
-is_schedule_active: true
+parameters: { "color": "yellow", "months": [1, 2, 3], "year": 2021 }
+schedule:
+  cron: 0 0 * * *
+  timezone: null
+  day_or: true
 infra_overrides: {}
-
-###
-### DO NOT EDIT BELOW THIS LINE
-###
-flow_name: main-flow
-manifest_path: null
 infrastructure:
   type: process
   env: {}
@@ -32,14 +21,17 @@ infrastructure:
   command: null
   stream_output: true
   working_dir: null
-  _block_document_id: e2e85e96-9ca9-4d32-abba-3c928d78b97f
-  _block_document_name: anonymous-e0655448-bf62-4a34-99c9-edc8eb08e456
-  _is_anonymous: true
   block_type_slug: process
   _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: main-flow
+manifest_path: null
 storage: null
 path: /Users/almazini/Documents/DEZoomCamp2023/week_2
-entrypoint: task3_parameterized_flow.py:main_flow
+entrypoint: task4_parameterized_flow.py:main_flow
 parameter_openapi_schema:
   title: Parameters
   type: object
@@ -58,4 +50,3 @@ parameter_openapi_schema:
   - year
   - color
   definitions: null
-timestamp: '2023-02-01T09:58:52.591512+00:00'

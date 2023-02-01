@@ -1,16 +1,25 @@
 
 ## (RUN VENV)
 
+
 ```
-python3 -m venv week2
-source week2/bin/activate
+cd Documents/DEZoomCamp2023/ 
+```
+
+
+```
+python3 -m venv de_zoomcamp_venv
+source de_zoomcamp_venv/bin/activate
+python3 -m pip install --upgrade pip
 pip3 install -r requirements.txt 
 pip3 list
-deactivate week2
+deactivate de_zoomcamp_venv
 ```
 
 Install certificates if there is error running prefect:
-`/Applications/Python\ 3.7/Install\ Certificates.command`
+```
+/Applications/Python\ 3.7/Install\ Certificates.command
+```
 
 
 ## (Start local server)
@@ -37,7 +46,7 @@ http://127.0.0.1:4200/blocks
 
 
 ```
-prefect deployment build ./3_parameterized_flow.py:main_flow -n "Parameterized ETL"
+prefect deployment build task3_parameterized_flow.py:main_flow -n "Parameterized ETL"
 ```
 amend parameters in YAML file 
 ```

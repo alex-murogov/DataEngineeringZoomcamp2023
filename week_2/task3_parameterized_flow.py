@@ -58,7 +58,6 @@ def main_flow(months, year, color):
     """The main ETL flow"""
     for month in months:
         print(month, '\n\n')
-
         etl_web_to_gcs(year, month, color)
 
 

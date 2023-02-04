@@ -73,24 +73,3 @@ How many rows were processed by the script?
 8
 10
 
-Form for submitting: https://forms.gle/PY8mBEGXJ1RvmTM97
-
-
-
-
-💻 Week #2 of my #LearningInPublic journey is all about Workflow Orchestration! 
-Even though I am more used to Airflow, this week I learned to work with Prefect:
-* Installing Prefect
-* Downloading data and loading it in Parquet files to DataLake - Google Cloud Storage 
-* Moving data from GCP to Google DataWarehouse (BigQuerry)
-* Parametrizing and scheduling flows
-* Creating a deployment locally
-* Setting up Prefect Agent
-* Running tasks in Docker
-* and much more 
-
-#dataengineering #Prefect #WorkflowOrchestration #ETL #dataanalytics 
-
-Thank you, Jeff Hale and Anna Geller, for very informative lectures about the Prefect!
-
-https://app.prefect.cloud/

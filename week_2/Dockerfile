@@ -4,5 +4,5 @@ COPY docker-requirements.txt .
 
 RUN pip install -r docker-requirements.txt --trusted-host pypi.python.org --no-cache-dir
 
-COPY task4_parameterized_flow.py /opt/prefect/flows/task4_parameterized_flow.py
+COPY homework_final.py /opt/prefect/flows/homework_final.py
 COPY ./data /opt/prefect/data

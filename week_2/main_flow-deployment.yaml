@@ -1,17 +1,14 @@
 ###
 ### A complete description of a Prefect Deployment for flow 'main-flow'
 ###
-name: etl2
+name: HomeWork week2 task1
 description: The main ETL flow
-version: 1063b2c180a803b130e75644d15bae64
+version: 6b0bc0f62fe66b2ccc699fc8c67ffcdc
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
-parameters: { "color": "yellow", "months": [1, 2, 3], "year": 2021 }
-schedule:
-  cron: 0 0 * * *
-  timezone: null
-  day_or: true
+parameters: {}
+schedule: null
 infra_overrides: {}
 infrastructure:
   type: process
@@ -31,7 +28,7 @@ flow_name: main-flow
 manifest_path: null
 storage: null
 path: /Users/almazini/Documents/DEZoomCamp2023/week_2
-entrypoint: task4_parameterized_flow.py:main_flow
+entrypoint: load_data_to_dwh.py:main_flow
 parameter_openapi_schema:
   title: Parameters
   type: object

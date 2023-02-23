@@ -7,14 +7,14 @@ from prefect_gcp import GcpCredentials
 from prefect_gcp.cloud_storage import GcsBucket
 
 
-@task(log_prints=True, retries=3)
+# @task(log_prints=True, retries=3)
 def load_from_url(dataset_url: str) -> pd.DataFrame:
     """Read taxi data from web into pandas DataFrame"""
     df = pd.read_csv(dataset_url)
     return df
 
 
-@task(log_prints=True)
+# @task(log_prints=True)
 def clean(df: pd.DataFrame, color: str) -> pd.DataFrame:
     """Fix some dtype issues"""
     if color == "yellow":
@@ -26,7 +26,7 @@ def clean(df: pd.DataFrame, color: str) -> pd.DataFrame:
     return df
 
 
-@task()
+# @task()
 def extract_from_gcs(color: str, year: int, month: int) -> Path:
     """Download trip data from GCS"""
     gcs_path = f'data/{color}/{color}_tripdata_{year}-{month:02}.parquet'
@@ -36,7 +36,7 @@ def extract_from_gcs(color: str, year: int, month: int) -> Path:
     return Path(gcs_path)
 
 
-@task(log_prints=True)
+# @task(log_prints=True)
 def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
     """Write DataFrame locally as parquet file"""
 
@@ -45,15 +45,14 @@ def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
     df.to_parquet(path, compression='gzip')
 
 
-
-@task()
+# @task()
 def write_to_gcs(path: Path) -> None:
     """Upload local parquet file to GCS"""
     gcp_cloud_storage_bucket_block = GcsBucket.load("zoom-gcs")
     gcp_cloud_storage_bucket_block.upload_from_path(from_path=path, to_path=path)
 
 
-@task()
+# @task()
 def write_bq(df: pd.DataFrame, destination_table) -> None:
     """Write DataFrame to BigQuery"""
     gcp_credentials_block = GcpCredentials.load('zoom-gcp-creds')
@@ -67,7 +66,7 @@ def write_bq(df: pd.DataFrame, destination_table) -> None:
     )
 
 
-@flow(log_prints=True)
+# @flow(log_prints=True)
 def run_etl_git_gcs_bq(year, month, color, if_clean_dataset) -> None:
     """The main ETL function"""
 
@@ -81,7 +80,6 @@ def run_etl_git_gcs_bq(year, month, color, if_clean_dataset) -> None:
     logger.info(f"ETL for {dataset_file} dataset.")
     logger.info(f"NUMBER OF ROWS IN RAW FILE: {len(df)}.")
 
-
     # 2 Clean data
     if if_clean_dataset:
         df = clean(df, color)
@@ -89,10 +87,9 @@ def run_etl_git_gcs_bq(year, month, color, if_clean_dataset) -> None:
     else:
         logger.info(f"CLEANING SKIPPED")
 
-
     # 3 Write DataFrame locally as parquet file
     write_local(df, color, dataset_file)
-    path = f"data/fhv/{dataset_file}.parquet"
+    path = f"data/{color}/{dataset_file}.parquet"
 
     # # 4 Load data to Google Cloup Storage:
     write_to_gcs(path)
@@ -114,7 +111,7 @@ def run_etl_git_gcs_bq(year, month, color, if_clean_dataset) -> None:
     logger.info(f"DATA IS APPENDED TO DWH TABLE")
 
 
-@flow()
+# @flow()
 def third_week_load_data(months, year, color, cleaning) -> None:
     """The main ETL flow"""
     for yr in year:
@@ -127,9 +124,31 @@ def third_week_load_data(months, year, color, cleaning) -> None:
 
 
 if __name__ == '__main__':
-    color = 'fhv'
-    months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    year = [2019]
-    cleaning = False
+    # Yellow taxi data: https://github.com/DataTalksClub/nyc-tlc-data/releases/tag/yellow/
+    # Green taxi data: https://github.com/DataTalksClub/nyc-tlc-data/releases/tag/green/
+    # For - hire vehicles(FHV): https://github.com/DataTalksClub/nyc-tlc-data/releases/tag/fhv/
 
-    third_week_load_data(months, year, color, cleaning)
+    setup = {
+        "green": {
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            "year": [2019, 2020],
+            "link": "https://github.com/DataTalksClub/nyc-tlc-data/releases/tag/green/"
+        },
+        "yellow": {
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            "year": [2019, 2020],
+            "link": "https://github.com/DataTalksClub/nyc-tlc-data/releases/tag/yellow/"
+        },
+        "fhv": {
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            "year": [2019],
+            "link": "https://github.com/DataTalksClub/nyc-tlc-data/releases/tag/fhv/"
+        }
+    }
+
+    # color = 'green'
+    # months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    # year = [2019, 2020]
+    # cleaning = False
+    #
+    # third_week_load_data(months, year, color, cleaning)

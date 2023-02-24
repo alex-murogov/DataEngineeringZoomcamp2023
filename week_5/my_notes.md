@@ -77,22 +77,35 @@ import pyspark
 pip install py4j
 ```
 
-Findspark is a package that lets you declare the home directory of PySpark and lets you run it from other locations if your folder paths aren’t properly synced.
-To install findspark, run:
 
-```
-pip3 install findpark
-```
 
-To use it in a python3 shell (or Jupyter Notebook), run the following:
 
+```bash
+export SPARK_HOME=/usr/local/Cellar/apache-spark/3.2.1/libexec
+export PATH="$SPARK_HOME/bin/:$PATH"
 ```
- import findspark
- findspark.init('Users/vanaurum/server/spark-2.4.3-bin-hadoop2.7')
- import pyspark
-```
+`control+X`
 
 https://kevinvecmanis.io/python/pyspark/install/2019/05/31/Installing-Apache-Spark.html
+
+Final file looks like this:
+`nano ~/.zshrc`
+
+```bash
+export JAVA_HOME=/usr/local/Cellar/openjdk/19.0.2
+export PATH="$JAVA_HOME/bin/:$PATH"
+
+export SPARK_HOME=/usr/local/Cellar/apache-spark/3.3.2/libexec
+export PATH="$SPARK_HOME/bin/:$PATH"
+
+export PYSPARK_PYTHON=python3
+export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
+export PYSPARK_DRIVER_PYTHON=python3
+export PYSPARK_DRIVER_PYTHON_OPTS="notebook"
+```
+`control+X`
+
+
 
 ```python
 from pyspark.sql import SparkSession
@@ -106,7 +119,6 @@ df = spark.createDataFrame(data, ["Name", "Age"])
 
 # print the dataframe
 df.show()
-
 ```
 
 

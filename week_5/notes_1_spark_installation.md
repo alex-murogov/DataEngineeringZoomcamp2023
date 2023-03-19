@@ -64,6 +64,10 @@ distData.filter(_ < 10).collect()
 
 
 ### PySpark
+
+`pip3 install pyspark`
+
+
 ```bash
 cd 
 python3
@@ -76,6 +80,8 @@ import pyspark
 ```
 pip install py4j
 ```
+
+
 
 
 

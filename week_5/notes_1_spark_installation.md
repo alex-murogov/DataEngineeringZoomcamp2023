@@ -113,6 +113,14 @@ export PYSPARK_DRIVER_PYTHON_OPTS="notebook"
 
 
 
+```-m pip uninstall jupyter
+pip3 show jupyter
+export PATH=$PATH:/Users/macbook/Library/Python/3.9/bin
+```
+
+
+
+
 ```python
 from pyspark.sql import SparkSession
 
